@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template: `
     <div>
-    <play-area> </play-area>
+    <play-area>Loading...</play-area>
     </div>
     `
 })

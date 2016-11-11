@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { stdBase } from './base-info';
+import { baseInfo } from './base-info';
 
 
-const BASES: stdBase[] = [
+const BASES: baseInfo[] = [
   { currentScore: 1, scoreThreshold: 10, name: 'Base1' },
   { currentScore: 3, scoreThreshold: 10, name: 'Base Two' },
   { currentScore: 5, scoreThreshold: 10, name: 'Base iii' },
@@ -14,9 +14,9 @@ const BASES: stdBase[] = [
 @Component({
   selector: 'play-area',
   template: `
-    <h1>{{title}}</h1>
-    <ul class="bases">
-      <li *ngFor="let base of bases"
+    <h1 id = "active-bases">{{title}}</h1>
+    <ul id = "base-list" class="bases">
+      <li id = "base-list-item" *ngFor="let base of bases"
         [class.selected]="base === _selectedBase"
         (click)="onSelect(base)">
         <div class="base-header" >
@@ -89,14 +89,19 @@ const BASES: stdBase[] = [
   `]
 })
 export class playArea {
-    title = 'Active Bases';
-    _selectedBase : stdBase;
-    bases = BASES;
+  title = 'Active Bases';
+  _selectedBase: baseInfo;
+  bases = BASES;
 
-  onSelect(base: stdBase): void {
+  onSelect(base: baseInfo): void {
     this._selectedBase = base;
   }
-  progressPercent(current: number, max: number): number{
-      return current/max*100;
+  progressPercent(current: number, max: number): number {
+    return current / max * 100;
+  }
+
+  protected setBases(pbases: baseInfo[]): void {
+    this.bases = pbases;
+
   }
 }
