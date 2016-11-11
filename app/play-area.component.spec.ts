@@ -1,17 +1,19 @@
 import { playArea } from './play-area.component';
 import { baseInfo } from './base-info';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 
-describe('Play Area Component', function () {
+describe('Play Area Component', function() {
 
     const testBases: baseInfo[] = [
-        { currentScore: 0, scoreThreshold: 0, name: 'a' },
-        { currentScore: 0, scoreThreshold: 0, name: 'b' }
+        { currentScore: 1, scoreThreshold: 10, name: 'a' },
+        { currentScore: 5, scoreThreshold: 10, name: 'b' }
     ];
 
-    beforeEach(() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({ declarations: [playArea] });
-    });
+        TestBed.compileComponents();
+    }));
+
 
     it('should instantiate component', () => {
         let fixture = TestBed.createComponent(playArea);
@@ -54,6 +56,21 @@ describe('Play Area Component', function () {
         fixture.detectChanges();
 
         expect(baseToClick.classList.contains("selected")).toBeTruthy("should NOW be selected yet");
+    });
+
+    fit('should display a bases complete percentage', () => {
+        let fixture = TestBed.createComponent(playArea);
+        fixture.detectChanges();
+
+        const comp: any = fixture.componentInstance
+        comp.setBases(testBases);
+        fixture.detectChanges();
+
+        const baseToCheck = document.getElementById("complete-percent");
+        let percentage = baseToCheck.textContent;
+        console.log("percentage: ", percentage);
+
+        expect(percentage).toEqual("10%");
 
 
     });

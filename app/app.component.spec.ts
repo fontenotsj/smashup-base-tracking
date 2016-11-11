@@ -2,7 +2,7 @@
 import { AppComponent } from './app.component';
 import { playArea } from './play-area.component';
 
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 
@@ -16,9 +16,10 @@ describe('Smoke test', () => {
 });
 
 describe('AppComponent with TCB', function () {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({ declarations: [AppComponent, playArea] });
-  });
+    TestBed.compileComponents();
+  }));
 
   it('should instantiate component', () => {
     let fixture = TestBed.createComponent(AppComponent);

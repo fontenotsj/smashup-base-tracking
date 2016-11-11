@@ -28,65 +28,13 @@ const BASES: baseInfo[] = [
             </progress>
             {{base.scoreThreshold}}
             <br>
-            {{progressPercent(base.currentScore, base.scoreThreshold)}}%
+           <span id = "complete-percent"> {{progressPercent(base.currentScore, base.scoreThreshold)}}% </span>
         </div>
       </li>
     </ul>
   `,
-  styles: [`
-    .selected {
-      background-color: #CFD8DC !important;
-      color: white;
-    }
-    .bases {
-      margin: 0 0 2em 0;
-      list-style-type: none;
-      padding: 0;
-      width: 15em;
-    }
-    .base-header {
-        background-color: blue;
-    }
-    .bases li {
-      cursor: pointer;
-      position: relative;
-      left: 0;
-      background-color: #EEE;
-      height: 3.5em;
+  styleUrls: ['app/play-area.component.css']
 
-    }
-    .bases li.selected:hover {
-      background-color: #BBD8DC !important;
-      color: white;
-    }
-    .bases li:hover {
-      color: #607D8B;
-      background-color: #DDD;
-      left: .2em;
-    }
-    .bases .text {
-      position: relative;
-      top: -3px;
-    }
-    .bases .badge {
-      display: inline-block;
-      font-size: small;
-      color: white;
-      padding: 0.8em 0.7em 0 0.7em;
-      background-color: #607D8B;
-      line-height: .8em;
-      position: relative;
-      left: -1px;
-      top: -4px;
-      height: 1.9em;
-      margin-right: .8em;
-      border-radius: 4px 0 0 4px;
-    }
-    .base-complete-info {
-        text-align: center;
-    }
-}
-  `]
 })
 export class playArea {
   title = 'Active Bases';
