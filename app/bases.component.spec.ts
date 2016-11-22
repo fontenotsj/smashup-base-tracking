@@ -1,30 +1,13 @@
 import { bases } from './bases.component';
 import { baseInfo } from './base-info';
 import { TestBed, async } from '@angular/core/testing';
+import { Any } from '../testing/any';
 
 describe('Bases Component', function () {
-
-
-    let testBases: baseInfo[];
-    let scoredBase: baseInfo[];
-    let unscoredBase: baseInfo[];
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({ declarations: [bases] });
         TestBed.compileComponents();
-
-        testBases = [
-            { currentScore: 1, scoreThreshold: 10, name: 'a' },
-            { currentScore: 5, scoreThreshold: 10, name: 'b' },
-        ];
-
-        scoredBase = [
-            { currentScore: 10, scoreThreshold: 10, name: 'c' }
-        ];
-
-        unscoredBase = [
-            { currentScore: 1, scoreThreshold: 10, name: 'c' }
-        ];
 
     }));
 
@@ -48,11 +31,12 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(testBases);
+        const baseList = Any.bases(Any.int(2, 5));
+        comp.setBases(baseList);
         fixture.detectChanges();
 
         var baseHeaders = document.getElementsByClassName("base-header");
-        expect(baseHeaders.length).toEqual(2, 'should have two bases');
+        expect(baseHeaders.length).toEqual(baseList.length, 'should have two bases');
     });
 
     it('should highlight selected base', () => {
@@ -60,7 +44,8 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(testBases);
+        const baseList = Any.bases(Any.int(2, 5));
+        comp.setBases(baseList);
         fixture.detectChanges();
 
         const baseToClick = document.getElementById("base-list-item");
@@ -77,14 +62,17 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(testBases);
+        const baseList = Any.bases(Any.int(2, 5));
+        //const baseIndex = Any.int(0,baseList.length);
+        comp.setBases(baseList);
         fixture.detectChanges();
 
+        let calcPercentage = comp.progressPercent(baseList[0].currentScore, baseList[0].scoreThreshold);
         const baseToCheck = document.getElementById("complete-percent");
-        let percentage = baseToCheck.textContent;
+        let screenPercentage = baseToCheck.textContent;
         // console.log("percentage: ", percentage);
 
-        expect(percentage).toEqual(" 10% ");
+        expect(screenPercentage).toEqual(" " + calcPercentage + "% ");
     });
 
     it('should not display base complete percentage if scored', () => {
@@ -92,7 +80,7 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(scoredBase);
+        comp.setBases(Any.scoredBase());
         fixture.detectChanges();
 
         const baseToCheck = document.getElementById("complete-percent");
@@ -105,7 +93,7 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(testBases);
+        comp.setBases(Any.bases());
         fixture.detectChanges();
 
         const minusBtn = document.getElementById("base-minus-button");
@@ -119,7 +107,7 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(testBases);
+        comp.setBases(Any.bases());
         fixture.detectChanges();
 
         const plusBtn = document.getElementById("base-plus-button");
@@ -133,16 +121,17 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(unscoredBase);
+        const expectedBases = Any.unscoredBase();
+        comp.setBases(expectedBases);
         fixture.detectChanges();
 
         const btnToClick = document.getElementById("base-plus-button");
-        expect(unscoredBase[0].currentScore).toEqual(1);
+        const oriScore = expectedBases[0].currentScore;
 
         btnToClick.click();
         fixture.detectChanges();
 
-        expect(unscoredBase[0].currentScore).toEqual(2);
+        expect(expectedBases[0].currentScore).toEqual(oriScore + 1);
 
 
     });
@@ -153,16 +142,17 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(unscoredBase);
+        const expectedBases = Any.unscoredBase();
+        comp.setBases(expectedBases);
         fixture.detectChanges();
 
         const btnToClick = document.getElementById("base-minus-button");
-        expect(unscoredBase[0].currentScore).toEqual(1);
+        const oriScore = expectedBases[0].currentScore;
 
         btnToClick.click();
         fixture.detectChanges();
 
-        expect(unscoredBase[0].currentScore).toEqual(0);
+        expect(expectedBases[0].currentScore).toEqual(oriScore - 1);
     });
 
     it('should  not add to the current score when base point plus button clicked if already at threshold', () => {
@@ -170,16 +160,17 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(scoredBase);
+        const expectedBases = Any.scoredBase();
+        comp.setBases(expectedBases);
         fixture.detectChanges();
 
         const btnToClick = document.getElementById("base-plus-button");
-        expect(scoredBase[0].currentScore).toEqual(scoredBase[0].scoreThreshold);
+        expect(expectedBases[0].currentScore).toEqual(expectedBases[0].scoreThreshold);
 
         btnToClick.click();
         fixture.detectChanges();
 
-        expect(scoredBase[0].currentScore).toEqual(scoredBase[0].scoreThreshold);
+        expect(expectedBases[0].currentScore).toEqual(expectedBases[0].scoreThreshold);
 
     });
 
@@ -188,18 +179,18 @@ describe('Bases Component', function () {
         let fixture = TestBed.createComponent(bases);
         fixture.detectChanges();
 
-        const comp: any = fixture.componentInstance
-        unscoredBase[0].currentScore = 0;
-        comp.setBases(unscoredBase);
+        const comp: any = fixture.componentInstance;
+        const expectedBases = Any.unscoredBase();
+        comp.setBases(expectedBases);
         fixture.detectChanges();
 
         const btnToClick = document.getElementById("base-minus-button");
-        expect(unscoredBase[0].currentScore).toEqual(0);
+        expectedBases[0].currentScore = 0;
 
         btnToClick.click();
         fixture.detectChanges();
 
-        expect(unscoredBase[0].currentScore).toEqual(0);
+        expect(expectedBases[0].currentScore).toEqual(0);
 
     });
 
@@ -209,7 +200,7 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(scoredBase);
+        comp.setBases(Any.scoredBase());
         fixture.detectChanges();
 
         const scoredDiv = document.getElementById("base-scored");
@@ -227,7 +218,7 @@ describe('Bases Component', function () {
         fixture.detectChanges();
 
         const comp: any = fixture.componentInstance
-        comp.setBases(unscoredBase);
+        comp.setBases(Any.unscoredBase());
         fixture.detectChanges();
 
         const scoredDiv = document.getElementById("base-scored");

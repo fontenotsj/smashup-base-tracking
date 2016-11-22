@@ -1,13 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { baseInfo } from './base-info';
+import { Any } from '../testing/any';
 
 
 let BASES: baseInfo[] = [
-    { currentScore: 1, scoreThreshold: 10, name: 'Base1' },
-    { currentScore: 3, scoreThreshold: 10, name: 'Base Two' },
-    { currentScore: 5, scoreThreshold: 10, name: 'Base iii' },
-    { currentScore: 9, scoreThreshold: 10, name: 'Base quad' },
-    { currentScore: 10, scoreThreshold: 10, name: 'Base 5' }
+    { currentScore: 1, scoreThreshold: 27, name: 'Base1' },
+    { currentScore: 3, scoreThreshold: 13, name: 'Base Two' },
+    { currentScore: 5, scoreThreshold: 6, name: 'Base iii' },
+    { currentScore: 9, scoreThreshold: 43432, name: 'Base quad' },
+    { currentScore: 10, scoreThreshold: 30, name: 'Base 5' }
 ];
 
 @Component({

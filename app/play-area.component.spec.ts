@@ -5,11 +5,6 @@ import { bases } from './bases.component'
 
 describe('Play Area Component', function () {
 
-    const testBases: baseInfo[] = [
-        { currentScore: 1, scoreThreshold: 10, name: 'a' },
-        { currentScore: 5, scoreThreshold: 10, name: 'b' }
-    ];
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({ declarations: [playArea, bases] });
         TestBed.compileComponents();
