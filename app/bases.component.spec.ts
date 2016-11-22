@@ -2,7 +2,7 @@ import { bases } from './bases.component';
 import { baseInfo } from './base-info';
 import { TestBed, async } from '@angular/core/testing';
 
-fdescribe('Bases Component', function () {
+describe('Bases Component', function () {
 
 
     let testBases: baseInfo[];
@@ -128,7 +128,7 @@ fdescribe('Bases Component', function () {
 
     });
 
-    fit('should add to the current score when base point plus button clicked', () => {
+    it('should add to the current score when base point plus button clicked', () => {
         let fixture = TestBed.createComponent(bases);
         fixture.detectChanges();
 
@@ -147,7 +147,7 @@ fdescribe('Bases Component', function () {
 
     });
 
-    fit('should subtract from the current score when base point minus button clicked', () => {
+    it('should subtract from the current score when base point minus button clicked', () => {
 
         let fixture = TestBed.createComponent(bases);
         fixture.detectChanges();
@@ -165,7 +165,7 @@ fdescribe('Bases Component', function () {
         expect(unscoredBase[0].currentScore).toEqual(0);
     });
 
-    fit('should  not add to the current score when base point plus button clicked if already at threshold', () => {
+    it('should  not add to the current score when base point plus button clicked if already at threshold', () => {
         let fixture = TestBed.createComponent(bases);
         fixture.detectChanges();
 
@@ -183,7 +183,7 @@ fdescribe('Bases Component', function () {
 
     });
 
-    fit('should not subtract the current score when base point minus button clicked if currently at zero score', () => {
+    it('should not subtract the current score when base point minus button clicked if currently at zero score', () => {
 
         let fixture = TestBed.createComponent(bases);
         fixture.detectChanges();
@@ -205,9 +205,33 @@ fdescribe('Bases Component', function () {
 
     it('should display SCORED!! when current score equals threshold', () => {
 
+        let fixture = TestBed.createComponent(bases);
+        fixture.detectChanges();
+
+        const comp: any = fixture.componentInstance
+        comp.setBases(scoredBase);
+        fixture.detectChanges();
+
+        const scoredDiv = document.getElementById("base-scored");
+
+        let scoredText = scoredDiv.textContent;
+        // console.log("percentage: ", percentage);
+
+        expect(scoredText).toEqual("SCORED!!!");
+
     });
 
-    it('should NOT display SCORED!! when current score less than threshold', () => {
+    it('should NOT display SCORED!!! when current score less than threshold', () => {
+
+        let fixture = TestBed.createComponent(bases);
+        fixture.detectChanges();
+
+        const comp: any = fixture.componentInstance
+        comp.setBases(unscoredBase);
+        fixture.detectChanges();
+
+        const scoredDiv = document.getElementById("base-scored");
+        expect(scoredDiv).toBeFalsy("Scored!!! should not be shown for unscored bases");
 
     });
 

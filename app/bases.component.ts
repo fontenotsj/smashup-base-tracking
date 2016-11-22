@@ -25,9 +25,8 @@ let BASES: baseInfo[] = [
           +
           </button>
         </div>
-        <div *ngIf="!isNotComplete(base.currentScore, base.scoreThreshold)" class="base-scored" >
-        SCORED!!!
-        </div>
+        <div id = "base-scored" *ngIf="!isNotComplete(base.currentScore, base.scoreThreshold)"
+        class="base-scored" >SCORED!!!</div>
         <div *ngIf="isNotComplete(base.currentScore, base.scoreThreshold)" class="base-complete-info" >
             0
             <progress max={{base.scoreThreshold}} value={{base.currentScore}}>
