@@ -1,4 +1,4 @@
-export class stdBase {
+export class baseInfo {
     name: string;
     scoreThreshold: number;
     currentScore: number;
