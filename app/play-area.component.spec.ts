@@ -2,7 +2,7 @@ import { playArea } from './play-area.component';
 import { baseInfo } from './base-info';
 import { TestBed, async } from '@angular/core/testing';
 
-describe('Play Area Component', function() {
+describe('Play Area Component', function () {
 
     const testBases: baseInfo[] = [
         { currentScore: 1, scoreThreshold: 10, name: 'a' },
@@ -58,7 +58,7 @@ describe('Play Area Component', function() {
         expect(baseToClick.classList.contains("selected")).toBeTruthy("should NOW be selected yet");
     });
 
-    fit('should display a bases complete percentage', () => {
+    it('should display a bases complete percentage', () => {
         let fixture = TestBed.createComponent(playArea);
         fixture.detectChanges();
 
@@ -68,9 +68,9 @@ describe('Play Area Component', function() {
 
         const baseToCheck = document.getElementById("complete-percent");
         let percentage = baseToCheck.textContent;
-        console.log("percentage: ", percentage);
+        // console.log("percentage: ", percentage);
 
-        expect(percentage).toEqual("10%");
+        expect(percentage).toEqual(" 10% ");
 
 
     });
