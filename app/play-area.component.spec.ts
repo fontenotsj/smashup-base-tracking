@@ -2,11 +2,12 @@ import { playArea } from './play-area.component';
 import { baseInfo } from './base-info';
 import { TestBed, async } from '@angular/core/testing';
 import { bases } from './bases.component'
+import { baseCard } from './base-card.component'
 
 describe('Play Area Component', function () {
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({ declarations: [playArea, bases] });
+        TestBed.configureTestingModule({ declarations: [playArea, bases, baseCard] });
         TestBed.compileComponents();
     }));
 

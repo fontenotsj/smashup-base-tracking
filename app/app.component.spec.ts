@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { playArea } from './play-area.component';
 import { bases } from './bases.component'
 import { TestBed, async } from '@angular/core/testing';
+import { baseCard } from './base-card.component'
 
 import { By } from '@angular/platform-browser';
 
@@ -15,9 +16,9 @@ describe('Smoke test', () => {
     });
 });
 
-describe('AppComponent with TCB', function() {
+describe('AppComponent with TCB', function () {
     beforeEach(async(() => {
-        TestBed.configureTestingModule({ declarations: [AppComponent, playArea, bases] });
+        TestBed.configureTestingModule({ declarations: [AppComponent, playArea, bases, baseCard] });
         TestBed.compileComponents();
     }));
 

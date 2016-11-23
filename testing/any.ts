@@ -54,19 +54,17 @@ export class Any {
     }
 
     public static scoredBase() {
-        let result: baseInfo[] = [];
+
         let x = Any.base();
         x.currentScore = x.scoreThreshold;
-        result.push(x);
-        return result;
+        return x;
     }
 
     public static unscoredBase() {
-        let result: baseInfo[] = [];
+
         let x = Any.base();
         x.scoreThreshold = x.currentScore + 1;
-        result.push(x)
-        return result;
+        return x;
     }
 
 }
