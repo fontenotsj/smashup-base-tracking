@@ -27,23 +27,6 @@ describe('Base Component', function () {
 
     });
 
-    it('should highlight selected base', () => {
-        let fixture = TestBed.createComponent(baseCard);
-
-        const comp: any = fixture.componentInstance
-        const expectedBase = Any.base();
-        comp.base = expectedBase;
-        fixture.detectChanges();
-
-        const baseToClick = document.getElementById(expectedBase.name);
-        expect(baseToClick.classList.contains("selected")).toBeFalsy("should NOT be selected yet");
-
-        baseToClick.click();
-        fixture.detectChanges();
-
-        expect(baseToClick.classList.contains("selected")).toBeTruthy("should NOW be selected yet");
-    });
-
     it('should display a base complete percentage if base not scored', () => {
         let fixture = TestBed.createComponent(baseCard);
 
