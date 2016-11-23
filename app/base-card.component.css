@@ -1,6 +1,5 @@
 .selected {
-      background-color: #CFD8DC !important;
-      color: white;
+
     }
     .base {
       margin: 0 0 2em 0;
@@ -10,8 +9,9 @@
       cursor: pointer;
       position: relative;
       left: 0;
-      background-color: #EEE;
       height: 4.5em;
+      background-color: lightblue !important;
+      color: black;
     }
     .base-button{
       background-color: green;
@@ -48,15 +48,4 @@
     }
     .base-complete-info {
         text-align: center;
-    }
-
-
-    .base .selected:hover {
-      background-color: #BBD8DC !important;
-      color: white;
-    }
-    .base :hover {
-      color: #607D8B;
-      background-color: #DDD;
-      left: .2em;
     }

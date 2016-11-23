@@ -43,27 +43,6 @@ describe('Bases Component', function() {
         expect(baseHeaders.length).toEqual(baseList.length, `should have ${baseList.length} bases`);
     });
 
-    it('should highlight selected base', () => {
-        let fixture = TestBed.createComponent(bases);
-        fixture.detectChanges();
-
-        const comp: any = fixture.componentInstance
-        const baseList = Any.bases(Any.int(2, 5));
-        comp.setBases(baseList);
-        fixture.detectChanges();
-
-        const baseToClick = document.getElementById(baseList[0].name);
-        expect(baseToClick.classList.contains("selected")).toBeFalsy("should NOT be selected yet");
-
-        baseToClick.click();
-        fixture.detectChanges();
-
-        expect(baseToClick.classList.contains("selected")).toBeTruthy("should NOW be selected yet");
-    });
-
-    it('should receive base selected event when a base is selected', () => { });
-
-    it('should tell all other child bases selected is false when a selection is made', () => { });
 
 
 });

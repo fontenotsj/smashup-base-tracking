@@ -5,10 +5,7 @@ import { baseInfo } from './base-info';
 @Component({
     selector: 'base-card',
     template: `
-    <div id = {{_base.name}}
-        [class.selected]="_selected"
-        class="base"
-        (click)="onSelect(_base)">
+    <div id = {{_base.name}}  class="base" >
         <div class="base-header" >
           <button id= "base-minus-button" class="base-button" (click)="baseBtnClicked($event, '-')">
           -
@@ -27,33 +24,23 @@ import { baseInfo } from './base-info';
             <br>
            <span id = "complete-percent"> {{progressPercent()}}% </span>
         </div>
-</div> `
+</div>
+`
     ,
     styleUrls: ['app/base-card.component.css']
 })
 export class baseCard {
     @Input() base: baseInfo;
-    @Output() onSelected = new EventEmitter<baseInfo>();
+    @Output() onDelete = new EventEmitter<baseInfo>();
 
-    _selected: boolean;
     _base: baseInfo;
 
     ngOnInit() {
         this._base = this.base;
     }
 
-
-    public setSelected(selectedFlag: boolean): void {
-        this._selected = selectedFlag;
-    }
-
-    onSelect(): void {
-        this._selected = true;
-        this.onSelected.emit(this._base);
-    }
-    onUnselect(): void {
-        this._selected = false;
-        this.onSelected.emit(this._base);
+    onDeleteClick(): void {
+        this.onDelete.emit(this._base);
     }
 
     progressPercent(): number {
