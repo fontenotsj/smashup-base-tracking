@@ -43,6 +43,34 @@ describe('Bases Component', function() {
         expect(baseHeaders.length).toEqual(baseList.length, `should have ${baseList.length} bases`);
     });
 
+    it('should display an Add Bases button', () => {
+        let fixture = TestBed.createComponent(bases);
+
+        var addBasesButton = document.getElementById("bases-add-btn");
+        expect(addBasesButton).toBeTruthy("expected Add Bases Button to exist");
+
+    });
+
+    it('should display a bases add secton when Add Bases button clicked', () => {
+        let fixture = TestBed.createComponent(bases);
+        var addBasesButton = document.getElementById("bases-add-btn");
+
+        const comp: any = fixture.componentInstance
+        const baseList = Any.bases(Any.int(2, 5));
+        comp.setBases(baseList);
+        fixture.detectChanges();
+
+        var baseAddComponent = document.getElementById("base-add-screen");
+        expect(baseAddComponent).toBeFalsy();
+
+        addBasesButton.click();
+        fixture.detectChanges();
+
+        baseAddComponent = document.getElementById("base-add-screen");
+        expect(baseAddComponent).toBeTruthy();
+
+    });
+
 
 
 });

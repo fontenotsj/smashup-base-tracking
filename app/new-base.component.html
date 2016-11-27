@@ -1,0 +1,13 @@
+<div *ngIf="base">
+    <h2>{{base.name}} details!</h2>
+    <div>
+        <label>Score Threshold: </label>{{base.scoreTreshold}}
+        <input [(ngModel)]="base.scoreTreshold" placeholder="Score Threshold" />
+    </div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="base.name" placeholder="name" />
+    </div>
+    <button (click)="cancel()">Cancel</button>
+    <button (click)="save()">Save</button>
+</div>

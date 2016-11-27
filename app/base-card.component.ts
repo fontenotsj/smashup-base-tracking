@@ -31,16 +31,11 @@ import { baseInfo } from './base-info';
 })
 export class baseCard {
     @Input() base: baseInfo;
-    @Output() onDelete = new EventEmitter<baseInfo>();
 
     _base: baseInfo;
 
     ngOnInit() {
         this._base = this.base;
-    }
-
-    onDeleteClick(): void {
-        this.onDelete.emit(this._base);
     }
 
     progressPercent(): number {

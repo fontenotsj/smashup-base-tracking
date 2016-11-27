@@ -13,12 +13,6 @@
       background-color: lightblue !important;
       color: black;
     }
-    .base-button{
-      background-color: green;
-    }
-    .base-button-right{
-      float: right;
-    }
 
     .base-scored{
       color: red;
